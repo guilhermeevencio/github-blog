@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { getProfileInfo, ProfileInfoData } from '../../utils/requests'
 import {
   SummaryContainer,
   ImageContainer,
@@ -5,33 +7,65 @@ import {
   BioContent,
   LinksContainer,
   InfoContainer,
+  LinkContent,
 } from './style'
 
+import {
+  FaGithub,
+  FaBuilding,
+  FaUserFriends,
+  FaExternalLinkAlt,
+} from 'react-icons/fa'
+
 export function Summary() {
+  const [profileInfo, setProfileInfo] = useState({} as ProfileInfoData)
+  useEffect(() => {
+    async function apiProfileResponse() {
+      const data = await getProfileInfo()
+      setProfileInfo(data)
+    }
+    apiProfileResponse()
+  }, [])
+
+  useEffect(() => {
+    console.log(profileInfo)
+  }, [profileInfo])
+
   return (
     <SummaryContainer>
       <ImageContainer>
-        <img
-          src="https://avatars.githubusercontent.com/u/93713979?v=4"
-          alt="profile image"
-        />
+        <img src={profileInfo.avatarUrl} alt="profile image" />
       </ImageContainer>
       <InfoContainer>
         <NameContainer>
-          <h1>Guilherme Luz</h1>
-          <a href="https://github.com/guilhermeevencio">Github</a>
+          <h1>{profileInfo.name}</h1>
+          <LinkContent variant="blue">
+            <a href={profileInfo.htmlUrl} style={{ fontWeight: '700' }}>
+              GITHUB
+              <FaExternalLinkAlt color="#3294F8" />
+            </a>
+          </LinkContent>
         </NameContainer>
-        <BioContent>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam vitae
-          doloremque ratione veniam fugit repellendus itaque ipsa aliquid
-          provident reprehenderit omnis fuga minima delectus est officia,
-          tenetur minus odio illo.
-        </BioContent>
+        <BioContent>{profileInfo.bio}</BioContent>
         <LinksContainer>
-          <a href="https://github.com/guilhermeevencio">Github</a>
-          <a href="https://linkedin.com/in/guilhermeevencio">Linkedin</a>
-          <p>Rocketseat</p>
-          <p>50 seguidores</p>
+          <LinkContent>
+            <a href={profileInfo.htmlUrl}>
+              <FaGithub color="#3A536B" />
+              {profileInfo.login}
+            </a>
+          </LinkContent>
+          <LinkContent>
+            <span>
+              <FaBuilding color="#3A536B" />
+              <p>{profileInfo.company || 'Freelancer'}</p>
+            </span>
+          </LinkContent>
+          <LinkContent>
+            <span>
+              <FaUserFriends color="#3A536B" />
+              <p>{`${profileInfo.followers} seguidores`}</p>
+            </span>
+          </LinkContent>
         </LinksContainer>
       </InfoContainer>
     </SummaryContainer>
