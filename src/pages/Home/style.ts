@@ -7,4 +7,16 @@ export const CardsContainer = styled.div`
   display: flex;
   gap: 2rem;
   margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  @media (max-width: 1120px) {
+    width: 90%;
+  }
 `

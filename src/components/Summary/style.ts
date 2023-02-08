@@ -23,6 +23,10 @@ export const SummaryContainer = styled.section`
     flex-direction: column;
     width: 100%;
   }
+
+  @media (max-width: 1120px) {
+    width: 90%;
+  }
 `
 
 export const ImageContainer = styled.div`

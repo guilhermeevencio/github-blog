@@ -1,15 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios'
-
-export interface ProfileInfoData {
-  name: string
-  bio: string
-  htmlUrl: string
-  login: string
-  company: string | null
-  followers: string
-  avatarUrl: string
-}
+import { PostData, ProfileInfoData } from '../contexts/AppContext'
 
 export async function getProfileInfo() {
   const { data } = await axios.get(
@@ -31,3 +22,30 @@ export async function getProfileInfo() {
 export const api = axios.create({
   baseURL: 'http://localhost:3333',
 })
+
+export async function getPosts() {
+  const { data } = await api.get('posts')
+  const postDataList: PostData[] = data.map(
+    ({
+      body,
+      title,
+      comments,
+      comments_url,
+      created_at,
+      html_url,
+      id,
+    }: any) => {
+      const postData: PostData = {
+        body,
+        title,
+        comments,
+        commentsUrl: comments_url,
+        createdAt: created_at,
+        htmlUrl: html_url,
+        id,
+      }
+      return postData
+    },
+  )
+  return postDataList
+}

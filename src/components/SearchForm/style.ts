@@ -10,7 +10,10 @@ export const FormContainer = styled.div`
   gap: 0.75rem;
 
   @media (max-width: 720px) {
-    margin: 1rem;
+    width: 90%;
+  }
+
+  @media (max-width: 1120px) {
     width: 90%;
   }
 `

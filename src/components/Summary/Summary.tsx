@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import { getProfileInfo, ProfileInfoData } from '../../utils/requests'
+import { useContext } from 'react'
 import {
   SummaryContainer,
   ImageContainer,
@@ -17,18 +16,10 @@ import {
   FaExternalLinkAlt,
 } from 'react-icons/fa'
 
+import { AppContext } from '../../contexts/AppContext'
+
 export function Summary() {
-  const [profileInfo, setProfileInfo] = useState({} as ProfileInfoData)
-
-  useEffect(() => {
-    async function apiProfileResponse() {
-      const data = await getProfileInfo()
-      setProfileInfo(data)
-    }
-
-    apiProfileResponse()
-  }, [])
-
+  const { profileInfo } = useContext(AppContext)
   return (
     <SummaryContainer>
       <ImageContainer>
