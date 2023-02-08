@@ -27,3 +27,7 @@ export async function getProfileInfo() {
   }
   return profileInfo
 }
+
+export const api = axios.create({
+  baseURL: 'http://localhost:3333',
+})
