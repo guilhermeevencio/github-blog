@@ -19,17 +19,15 @@ import {
 
 export function Summary() {
   const [profileInfo, setProfileInfo] = useState({} as ProfileInfoData)
+
   useEffect(() => {
     async function apiProfileResponse() {
       const data = await getProfileInfo()
       setProfileInfo(data)
     }
+
     apiProfileResponse()
   }, [])
-
-  useEffect(() => {
-    console.log(profileInfo)
-  }, [profileInfo])
 
   return (
     <SummaryContainer>
