@@ -18,5 +18,6 @@ export const CardsContainer = styled.div`
 
   @media (max-width: 1120px) {
     width: 90%;
+    justify-content: center;
   }
 `
