@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -33,6 +33,7 @@ export const FormInput = styled.input`
 
 export const SearchInputContainer = styled.div`
   display: flex;
+  gap: 1rem;
 `
 
 export const FormDescriprionContainer = styled.div`
@@ -49,4 +50,17 @@ export const FormDescriprionContainer = styled.div`
     font-size: 14px;
     color: ${(props) => props.theme['base-span']};
   }
+`
+
+export const SubmitButton = styled.button`
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.theme['base-title']};
+  background-color: ${(props) => props.theme['base-post']};
+  border-radius: 6px;
+  padding: 0 1rem;
+  width: 8rem;
+  gap: 1rem;
 `
