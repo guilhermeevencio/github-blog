@@ -9,6 +9,7 @@ export interface PostData {
   createdAt: string
   htmlUrl: string
   id: number
+  number: number
 }
 
 export interface ProfileInfoData {

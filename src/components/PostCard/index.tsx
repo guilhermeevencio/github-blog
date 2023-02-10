@@ -4,6 +4,7 @@ import { CardTitleContainer, PostCardContainer } from './style'
 import { formatDistanceToNow } from 'date-fns'
 import { useEffect, useState } from 'react'
 import ptBR from 'date-fns/locale/pt-BR'
+import { Link } from 'react-router-dom'
 
 export function PostCard(props: PostData) {
   const [formattedDate, setFormattedDate] = useState<Date>(new Date())
@@ -13,16 +14,18 @@ export function PostCard(props: PostData) {
   }, [props])
   return (
     <PostCardContainer>
-      <CardTitleContainer>
-        <h3>{props.title}</h3>
-        <span>
-          {formatDistanceToNow(formattedDate, {
-            addSuffix: true,
-            locale: ptBR,
-          })}
-        </span>
-      </CardTitleContainer>
-      <ReactMarkdown>{`${props.body.substring(0, 200)}...`}</ReactMarkdown>
+      <Link to={`/${props.number}`}>
+        <CardTitleContainer>
+          <h3>{props.title}</h3>
+          <span>
+            {formatDistanceToNow(formattedDate, {
+              addSuffix: true,
+              locale: ptBR,
+            })}
+          </span>
+        </CardTitleContainer>
+        <ReactMarkdown>{`${props.body.substring(0, 200)}...`}</ReactMarkdown>
+      </Link>
     </PostCardContainer>
   )
 }

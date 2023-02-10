@@ -20,12 +20,17 @@ export async function getProfileInfo() {
 }
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: 'https://api.github.com',
 })
 
 export async function getPosts() {
-  const { data } = await api.get('posts')
-  const postDataList: PostData[] = data.map(
+  const { data } = await api.get('/search/issues', {
+    params: {
+      q: 'repo:rocketseat-education/reactjs-github-blog-challenge',
+    },
+  })
+
+  const postDataList: PostData[] = data.items.map(
     ({
       body,
       title,
@@ -34,6 +39,7 @@ export async function getPosts() {
       created_at,
       html_url,
       id,
+      number,
     }: any) => {
       const postData: PostData = {
         body,
@@ -43,6 +49,7 @@ export async function getPosts() {
         createdAt: created_at,
         htmlUrl: html_url,
         id,
+        number,
       }
       return postData
     },
