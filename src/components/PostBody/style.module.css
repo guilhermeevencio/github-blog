@@ -1,0 +1,35 @@
+.reactMarkDown {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #AFC2D4;
+  line-height: 160%
+}
+
+.reactMarkDown a {
+  color: #3294F8;
+}
+
+.reactMarkDown p {
+  margin-top: 0.75rem;
+}
+
+.reactMarkDown h1, h2, h3, strong {
+  color: #E7EDF4;
+  margin: 2rem 0 1rem 0;
+}
+
+.reactMarkDown img {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 4rem;
+  width: 80%;
+}
+
+@media (max-width: 720px) {
+  .reactMarkDown img{
+    width: 100%
+  }
+}
