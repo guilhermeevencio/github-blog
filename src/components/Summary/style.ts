@@ -13,6 +13,7 @@ export const SummaryContainer = styled.section`
   justify-content: center;
   gap: 2rem;
   border-radius: 8px;
+  box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
 
   a {
     text-decoration: none;
