@@ -23,10 +23,12 @@ export const api = axios.create({
   baseURL: 'https://api.github.com',
 })
 
-export async function getPosts() {
+export async function getPosts(searchQuery?: string) {
   const { data } = await api.get('/search/issues', {
     params: {
-      q: 'repo:rocketseat-education/reactjs-github-blog-challenge',
+      q: `${
+        searchQuery || ''
+      } repo:rocketseat-education/reactjs-github-blog-challenge`,
     },
   })
 

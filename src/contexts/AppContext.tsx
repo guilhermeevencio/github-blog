@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import React, { createContext, ReactNode, useEffect, useState } from 'react'
 import { getPosts, getProfileInfo } from '../utils/requests'
 
 export interface PostData {
@@ -25,6 +25,7 @@ export interface ProfileInfoData {
 interface IAppContext {
   profileInfo: ProfileInfoData
   postData: PostData[]
+  setPostData: React.Dispatch<React.SetStateAction<PostData[]>>
 }
 
 export const AppContext = createContext({} as IAppContext)
@@ -49,7 +50,7 @@ export function AppProvider({ children }: AppProviderProps) {
   }, [])
 
   return (
-    <AppContext.Provider value={{ profileInfo, postData }}>
+    <AppContext.Provider value={{ profileInfo, postData, setPostData }}>
       {children}
     </AppContext.Provider>
   )

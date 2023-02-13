@@ -11,6 +11,7 @@ import {
 } from './style'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { getPosts } from '../../utils/requests'
 
 const searchFormSchema = z.object({
   query: z.string(),
@@ -19,13 +20,14 @@ const searchFormSchema = z.object({
 type SearchFormInput = z.infer<typeof searchFormSchema>
 
 export function SearchForm() {
-  const { postData } = useContext(AppContext)
+  const { postData, setPostData } = useContext(AppContext)
   const { register, handleSubmit } = useForm<SearchFormInput>({
     resolver: zodResolver(searchFormSchema),
   })
 
-  function handleSearchQuery(data: SearchFormInput) {
-    console.log(data)
+  async function handleSearchQuery(data: SearchFormInput) {
+    const posts = await getPosts(data.query)
+    setPostData(posts)
   }
 
   return (

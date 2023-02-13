@@ -63,4 +63,19 @@ export const SubmitButton = styled.button`
   padding: 0 1rem;
   width: 8rem;
   gap: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.blue};
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `
